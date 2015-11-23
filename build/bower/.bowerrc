@@ -1,0 +1,5 @@
+{
+  "directory": "src/client/statics/bower_components",
+  "analytics": false,
+  "interactive": false
+}

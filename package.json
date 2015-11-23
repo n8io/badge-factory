@@ -1,0 +1,100 @@
+{
+  "name": "badge-factory",
+  "description": "Simple app to say hello!",
+  "author": "First Last <first.last@example.com>",
+  "version": "0.0.1",
+  "private": false,
+  "preferGlobal": false,
+  "main": "src/server/app.js",
+  "scripts": {
+    "build:bithound": "node build/bithound/build",
+    "build:bower": "bower init --config.interactive=true && node build/bower/build",
+    "build:circleci": "node build/circleci/build",
+    "build:docker": "node build/docker/build",
+    "build:nvm": "node build/nvm/build",
+    "build:readme": "node build/readme/build",
+    "build:stylint": "node build/stylint/build",
+    "build:travisci": "node build/travisci/build",
+    "clean": "rm -rf node_modules/ dist/ coverage/ src/client/statics/bower_components/ npm-debug.log .git.json DockerFile .dockerignore docker-compose.yml circle.yml .travis.yml .nvmrc",
+    "coverage": "gulp git-info && gulp coverage",
+    "dev": "BUNYAN_LOG_LEVEL=debug EXPRESS_LOG_FORMAT=dev gulp | bunyan",
+    "gulp": "gulp",
+    "lint": "gulp lint",
+    "postinstall": "gulp git-info",
+    "postversion": "git push && git push --tags",
+    "preversion": "npm run lint && npm run test",
+    "start": "node $npm_package_main",
+    "test": "gulp test",
+    "test-integration": "gulp test-integration",
+    "test-unit": "gulp test-unit"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run test"
+    }
+  },
+  "engines": {
+    "node": "^4.2"
+  },
+  "bugs": {
+    "url": "https://github.com/n8io/badge-factory/issues"
+  },
+  "keywords": [
+    "helloworld",
+    "NodeJs",
+    "ExpressJs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/n8io/badge-factory"
+  },
+  "readme": "README.md",
+  "test": {
+    "reporter": "spec"
+  },
+  "dependencies": {
+    "body-parser": "^1",
+    "bunyan": "^1",
+    "express": "^4",
+    "lodash": "^3",
+    "moment": "^2",
+    "morgan": "^1",
+    "nconf": "^0",
+    "request": "^2"
+  },
+  "devDependencies": {
+    "bower": "^1",
+    "chai": "^3",
+    "chalk": "^1",
+    "codecov.io": "^0",
+    "coveralls": "^2",
+    "del": "^2",
+    "eslint": "^1",
+    "ghooks": "^1",
+    "glob-all": "^3",
+    "gulp": "^3",
+    "gulp-babel": "^6",
+    "gulp-debug": "^2",
+    "gulp-eslint": "^1",
+    "gulp-istanbul": "^0",
+    "gulp-load-plugins": "^1",
+    "gulp-mocha": "^2",
+    "gulp-nodemon": "^2",
+    "gulp-sequence": "^0",
+    "gulp-stylint": "^3",
+    "gulp-util": "^3",
+    "http-status": "^0",
+    "inquirer": "^0",
+    "istanbul": "^0",
+    "json2yaml": "^1",
+    "mocha": "^2",
+    "node-dockerfile": "^0",
+    "semver": "^5",
+    "shelljs": "^0",
+    "sort-json": "^1",
+    "supertest": "^1",
+    "underscore.string": "^3"
+  },
+  "license": "MIT"
+}

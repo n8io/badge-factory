@@ -1,0 +1,8 @@
+---
+  language: "node_js"
+  node_js: 
+    - "4.2.2"
+  after_success: 
+    - "npm run coverage 2>/dev/null || true"
+  after_script: 
+    - "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
