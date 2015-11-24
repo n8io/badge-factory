@@ -1,7 +1,7 @@
 const path = require('path');
 
 const express = require('express');
-const controller = require(path.join(process.env.PWD, 'src/server/controllers/root'));
+const controller = require(path.join(process.env.PWD, 'src/server/controllers/badge'));
 
 module.exports = function(app) {
   const router = express.Router();
