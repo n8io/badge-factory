@@ -10,23 +10,23 @@ module.exports = function(app) {
     .get('/', get)
     ;
 
-  app.use('/', router);
+  app.use('/badge.svg', router);
 };
 
 function get(req, res) {
   const data = controller.get(buildOptionsFromRequest(req));
 
   return res
-    .type('image/svg')
+    .type('image/svg+xml')
     .status(200)
     .send(data);
 }
 
 function buildOptionsFromRequest(req) {
   const opts = {
-    bg: req.params.bg || '#555',
-    fg: req.params.fg || '#FFF',
-    text: req.params.txt || 'unavailable'
+    bg: req.query.bg || '555',
+    fg: req.query.fg || 'FFF',
+    txt: req.query.txt || 'unavailable'
   };
 
   return opts;

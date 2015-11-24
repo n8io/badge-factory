@@ -1,10 +1,10 @@
 # badge-factory
-**Simple 'Hello World' app to illustrate the basics**
+A simple api to build out a custom badge.
 
 * Tech Stack
-  * [StackShare](https://stackshare.io) [![Stack Share](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](http://stackshare.io/n8io/utopias)
+  * [StackShare](https://stackshare.io) [![Stack Share](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](http://stackshare.io/n8io/badge-factory)
 * Requirements
-  * [NodeJs](https://nodejs.org) ![NodeJs Version](http://img.shields.io/badge/node-^4.2-blue.svg)
+  * [NodeJs](https://nodejs.org) ![NodeJs Version](http://img.shields.io/badge/node-^5-blue.svg)
 * Builds
   * [Travis CI](https://travis-ci.org) [![Travis CI Build Status](https://img.shields.io/travis/n8io/badge-factory/develop.svg)](https://travis-ci.org/n8io/badge-factory)
   * [Circle CI](https://circleci.com) [![Circle CI Build Status](https://img.shields.io/circleci/project/n8io/badge-factory/develop.svg)](https://circleci.com/gh/n8io/badge-factory/tree/develop)

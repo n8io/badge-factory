@@ -1,7 +1,7 @@
 ---
   language: "node_js"
   node_js: 
-    - "4.2.2"
+    - "5.0.0"
   after_success: 
     - "npm run coverage 2>/dev/null || true"
   after_script: 

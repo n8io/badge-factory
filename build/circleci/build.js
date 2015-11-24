@@ -31,7 +31,7 @@ function writeCircleCiYaml(nodeVersion) {
       develop: {
         branch: 'develop',
         heroku: {
-          appname: 'utopias-badge-factory-dev'
+          appname: 'n8io-badge-factory-dev'
         }
       }
     }

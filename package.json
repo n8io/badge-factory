@@ -1,7 +1,7 @@
 {
   "name": "badge-factory",
-  "description": "Simple app to say hello!",
-  "author": "First Last <first.last@example.com>",
+  "description": "A simple api to build out a custom badge.",
+  "author": "Nate Clark <n8@n8io.com>",
   "version": "0.0.1",
   "private": false,
   "preferGlobal": false,
@@ -35,7 +35,7 @@
     }
   },
   "engines": {
-    "node": "^4.2"
+    "node": "^5"
   },
   "bugs": {
     "url": "https://github.com/n8io/badge-factory/issues"

@@ -1,9 +1,9 @@
 ---
-  machine:
-    node:
-      version: "4.2.2"
-  deployment:
-    develop:
+  machine: 
+    node: 
+      version: "5.0.0"
+  deployment: 
+    develop: 
       branch: "develop"
-      heroku:
-        appname: "utopias-badge-factory-dev"
+      heroku: 
+        appname: "n8io-badge-factory-dev"
