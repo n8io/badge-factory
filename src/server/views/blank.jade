@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+  body
+    svg
+      include svg-inner
+    pre.code !{JSON.stringify(locals, null, 2)}
+    script.
+      var el = document.getElementsByTagName('text')[0];
+      //- var hEl = document.getElementById('width');
+      //- var wEl = document.getElementById('height');
+
+      //- hEl.innerHTML = el.getBoundingClientRect().height;
+      //- wEl.innerHTML = el.getBoundingClientRect().width;
+
+      var hEl = document.createElement('div');
+      hEl.id = 'height';
+      hEl.innerHTML = el.getBoundingClientRect().height;
+      document.body.appendChild(hEl);
+
+      var wEl = document.createElement('div');
+      wEl.id = 'width';
+      wEl.innerHTML = el.getBoundingClientRect().width;
+      document.body.appendChild(wEl);

@@ -5,7 +5,10 @@ const projRoot = process.env.PWD;
 const routesRelativeDir = 'src/server/routes';
 
 module.exports = function(app) {
-  const prioritizedMiddleware = [];
+  const prioritizedMiddleware = [
+    './blank',
+    './badge'
+  ];
 
   // Normalize to absolute paths
   const routes = _.map(prioritizedMiddleware, function(mw) {
