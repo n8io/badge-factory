@@ -16,7 +16,11 @@ cfg.use('memory');
 cfg.env(envSettings.env);
 
 cfg.set('pkgJson', JSON.parse(fs.readFileSync(packageJson, 'utf-8')));
-cfg.set('git', JSON.parse(fs.readFileSync(commitFile, 'utf-8')));
+
+if (fs.exists(commitFile)) {
+  cfg.set('git', JSON.parse(fs.readFileSync(commitFile, 'utf-8')));
+}
+
 cfg.set('NODE_ENV', envNormalizer.normalize(cfg.get('NODE_ENV')));
 cfg.set('app:major', cfg.get('npm_package_version').split('.')[0]);
 cfg.set('app:minor', cfg.get('npm_package_version').split('.')[1]);
