@@ -20,7 +20,6 @@
     "dev": "BUNYAN_LOG_LEVEL=debug EXPRESS_LOG_FORMAT=dev gulp | bunyan",
     "gulp": "gulp",
     "lint": "gulp lint",
-    "postinstall": "gulp git-info",
     "postversion": "git push && git push --tags",
     "preversion": "npm run lint && npm run test",
     "start": "node $npm_package_main",
