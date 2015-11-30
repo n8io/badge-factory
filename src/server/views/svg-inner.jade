@@ -1,0 +1,18 @@
+linearGradient#b(x2='0%', y2='100%')
+  stop(offset='0', stop-color='#bbb', stop-opacity='.1')
+  stop(offset='1', stop-opacity='.1')
+mask#a
+  - if (locals.height && locals.width)
+    rect(rx='#{br}', height='#{height}', width='#{width}' fill='#fff')
+  - else
+    rect(rx='#{br}', height='100%', width='100%')
+g(mask='url(#a)')
+  - if (locals.height && locals.width)
+    path(fill='##{bg}', d='M0 0h#{width}v#{height}H0z')
+    path(fill='url(#b)', d='M0 0h#{width}v#{height}H0z')
+  - else
+    path(fill='##{bg}', height='100%', width='100%')
+    path(fill='url(#b)', height='100%', width='100%')
+g(fill='##{fg}', text-anchor='middle', font-family='#{ff}', font-size='#{fsize}')
+  text(x='50%', y='57.5%', dominant-baseline='middle', stroke='#{!!bold ? "#" + fg : "transparent"}') #{txt == 'blank' ? ' ' : txt}
+

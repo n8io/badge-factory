@@ -1,42 +1,99 @@
 'use strict';
 
+const url = require('url');
+const path = require('path');
+
+const projRoot = process.env.PWD;
 const Nightmare = require('nightmare');
 const express = require('express');
-const wrap = require('co-express');
+const co = require('co');
+const config = require(path.join(projRoot, 'src/server/helpers/config'));
 
 module.exports = function(app) {
   const router = express.Router();
 
   router
-    .get('/', wrap(function* (req, res) {
-      const nightmare = Nightmare({show: false});
-      const width = yield nightmare
-        .goto('http://localhost:8080/blank/test')
-        .wait('svg')
-        .evaluate(function() {
-          var el = document.getElementsByTagName('text')[0]; // eslint-disable-line
-
-          return el.getComputedTextLength();
-        })
-        ;
-
-      yield nightmare.end();
-
-      console.log(width); // eslint-disable-line no-console
-
-      return res.send('ok');
-    }))
+    .get('/:text.svg', buildOutSvg)
     ;
 
-  app.use('/:text', router);
+  app.use('/badge', router);
 };
 
-// function buildOptionsFromRequest(req) {
-//   const opts = {
-//     bg: req.query.bg || '555',
-//     fg: req.query.fg || 'FFF',
-//     txt: req.query.txt || 'unavailable'
-//   };
+function buildOutSvg(req, res) {
+  const opts = buildOptionsFromRequest(req);
+  const urlObj = url.parse(`http://localhost:${config.get('PORT')}/blank/${opts.txt}`);
 
-//   return opts;
-// }
+  if (!opts.txt.trim()) {
+    return res
+      .status(401)
+      .send({
+        message: 'If you don\'t want to provide any text, pass ?text=blank'
+      })
+      ;
+  }
+
+  urlObj.query = opts;
+
+  co(function* () {
+    const nightmare = Nightmare({show: false});
+    const dimensions = yield nightmare
+      .goto(url.format(urlObj))
+      .wait('#width')
+      .evaluate(function() {
+        var el = document.getElementsByTagName('text')[0]; // eslint-disable-line
+
+        return {
+          height: document.getElementById('height').innerHTML,
+          width: document.getElementById('width').innerHTML
+        };
+      })
+      ;
+
+    yield nightmare.end();
+
+    return dimensions;
+  }).then(onSuccess, onError);
+
+  function onSuccess(dimensions) {
+    opts.width = parseInt(dimensions.width, 10) + (opts.hPad * 2);
+    opts.height = parseInt(dimensions.height, 10) + (opts.vPad * 2);
+
+    return res
+      .status(200)
+      .render('svg', opts)
+      ;
+  }
+
+  function onError(err) {
+    console.log('error', err); // eslint-disable-line no-console
+
+    return res
+      .status(500)
+      .send(err)
+      ;
+  }
+}
+
+function buildOptionsFromRequest(req) {
+  const opts = {
+    bg: req.query.bg || '555',
+    fg: req.query.fg || 'FFF',
+    txt: req.params.text || 'blank',
+    hPad: typeof req.query.hPad !== 'undefined' ? parseInt(req.query.hPad, 10) : -1,
+    vPad: typeof req.query.vPad !== 'undefined' ? parseInt(req.query.vPad, 10) : -1,
+    fsize: typeof req.query.fsize !== 'undefined' ? parseInt(req.query.fsize, 10) : 12,
+    br: typeof req.query.br !== 'undefined' ? parseInt(req.query.br, 10) : 3,
+    bold: !!parseInt(req.query.bold, 10),
+    ff: req.query.ff || 'Arial,Helvetica,Verdana,Geneva,sans-serif'
+  };
+
+  if (opts.hPad === -1) {
+    opts.hPad = parseInt(opts.fsize / 2.4, 10);
+  }
+
+  if (opts.vPad === -1) {
+    opts.vPad = parseInt(opts.fsize / 3.2, 10);
+  }
+
+  return opts;
+}
