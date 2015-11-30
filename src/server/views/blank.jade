@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+  body
+    div#width
+    div#height
+    svg
+      text(x='50%', y='50%') #{text || ''}
+    script.
+      var el = document.getElementsByTagName('text')[0];
+      var hEl = document.getElementById('width');
+      var wEl = document.getElementById('height');
+
+      hEl.innerHTML = el.getBoundingClientRect().height;
+      wEl.innerHTML = el.getBoundingClientRect().width;
