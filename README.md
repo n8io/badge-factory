@@ -8,7 +8,7 @@ A simple api to build out a custom badge.
 * Builds
   * [Travis CI](https://travis-ci.org) [![Travis CI Build Status](https://img.shields.io/travis/n8io/badge-factory/develop.svg)](https://travis-ci.org/n8io/badge-factory)
   * [Circle CI](https://circleci.com) [![Circle CI Build Status](https://img.shields.io/circleci/project/n8io/badge-factory/develop.svg)](https://circleci.com/gh/n8io/badge-factory/tree/develop)
-  * [Codeship](https://codeship.com) [![Codeship CI Build Status](https://img.shields.io/codeship/b4e0cfb0-6f89-0133-5997-368ef2487360/develop.svg)](https://codeship.com/projects/116268)
+  * [Codeship](https://codeship.com) [![Codeship CI Build Status](https://img.shields.io/codeship/49f0dc00-79d1-0133-5008-7addd7fed507/develop.svg)](https://codeship.com/projects/116268)
 * Dependencies
   * [David DM](https://david-dm.org) ![NPM Dependencies](https://david-dm.org/n8io/badge-factory/develop.svg)
   * [bitHound](https://bithound.io) [![bitHound Dependencies](https://www.bithound.io/github/n8io/badge-factory/badges/dependencies.svg)](https://www.bithound.io/github/n8io/badge-factory/develop/dependencies/npm)
