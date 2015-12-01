@@ -33,6 +33,11 @@
       "pre-push": "npm run test"
     }
   },
+  "deployment": {
+    "prod": {
+      "host": "stinkin-badges"
+    }
+  },
   "engines": {
     "node": "^5"
   },

@@ -31,7 +31,7 @@ function writeCircleCiYaml(nodeVersion) {
       develop: {
         branch: 'develop',
         heroku: {
-          appname: 'stinkin-badges'
+          appname: `${packageJson.deployment.prod.host}`
         }
       }
     }
