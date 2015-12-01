@@ -1,7 +1,4 @@
-const path = require('path');
-
 const express = require('express');
-const controller = require(path.join(process.env.PWD, 'src/server/controllers/root'));
 
 module.exports = function(app) {
   const router = express.Router();
@@ -38,14 +35,4 @@ function get(req, res) {
     .status(200)
     .render('home', {options: opts})
     ;
-}
-
-function buildOptionsFromRequest(req) {
-  const opts = {
-    bg: req.params.bg || '#555',
-    fg: req.params.fg || '#FFF',
-    text: req.params.txt || 'unavailable'
-  };
-
-  return opts;
 }

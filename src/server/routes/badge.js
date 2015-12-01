@@ -22,7 +22,7 @@ module.exports = function(app) {
 
 function buildOutSvg(req, res) {
   const opts = buildOptionsFromRequest(req);
-  const urlObj = url.parse(`http://localhost:${config.get('PORT')}/blank/${opts.txt}`);
+  const urlObj = url.parse(`http://${config.get('HOST')}:${config.get('PORT')}/blank/${opts.txt}`);
 
   if (!opts.txt.trim()) {
     return res
