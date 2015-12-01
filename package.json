@@ -59,6 +59,7 @@
     "express": "^4",
     "jade": "^1",
     "lodash": "^3",
+    "markdown-js": "0.0.3",
     "moment": "^2",
     "morgan": "^1",
     "nconf": "^0",

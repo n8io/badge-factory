@@ -8,6 +8,7 @@ const Nightmare = require('nightmare');
 const express = require('express');
 const co = require('co');
 const config = require(path.join(projRoot, 'src/server/helpers/config'));
+const jade = require('jade');
 
 module.exports = function(app) {
   const router = express.Router();
@@ -58,10 +59,15 @@ function buildOutSvg(req, res) {
     opts.width = parseInt(dimensions.width, 10) + (opts.hPad * 2);
     opts.height = parseInt(dimensions.height, 10) + (opts.vPad * 2);
 
-    return res
+    const svgXml = jade.renderFile(path.join(projRoot, 'src/server/views/svg.jade'), opts);
+
+    res
       .status(200)
-      .render('svg', opts)
+      .type('image/svg+xml')
+      .write(svgXml)
       ;
+
+    return res.end();
   }
 
   function onError(err) {
