@@ -2,10 +2,12 @@ doctype html
 html
   head
     link(href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', rel='stylesheet')
-    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js')
     script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+    style.
+      @charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}
   body
-    .container
+    .container(data-ng-controller='Main_Controller as mc')
       .row
         .col-sm-12.col-md-12.col-lg-12
           br
@@ -22,3 +24,77 @@ html
             * [![Invalid](/badge/invalid.svg?&fg=000&bg=e6e6e6&fsize=12&br=0)](/badge/invalid.svg?&fg=000&bg=e6e6e6&fsize=12&br=0)
             * [![Question](/badge/question.svg?&fg=fff&bg=cc317c&fsize=12&br=0)](/badge/question.svg?&fg=fff&bg=cc317c&fsize=12&br=0)
             * [![Won't fix](/badge/wontfix.svg?&fg=000&bg=fff&fsize=12&br=0)](/badge/wontfix.svg?&fg=000&bg=fff&fsize=12&br=0)
+
+      .row
+        .col-sm-12.col-md-12.col-lg-12
+          hr
+          img(data-ng-src='/badge/{{mc.badge.text}}.svg?&fg={{mc.badge.fg}}&bg={{mc.badge.bg}}&fsize={{mc.badge.fsize}}&br={{mc.badge.br}}&vPad={{mc.badge.vPad}}&hPad={{mc.badge.hPad}}&ff={{mc.badge.ff}}&bold={{!!mc.badge.bold}}')
+      .row
+        .col-sm-12.col-md-12.col-lg-12
+          br
+          form.form-horizontal
+            .form-group
+              label.control-label.col-sm-2 &amp;txt=&nbsp;
+              .col-sm-10
+                input(type='text', data-ng-model='mc.badge.text', placeholder='Badge text...', data-ng-required='true').form-control
+            .form-group
+              label.control-label.col-sm-2 &amp;fg=&nbsp;
+              .col-sm-10
+                input(type='text', data-ng-model='mc.badge.fg', placeholder='Badge foreground color...', data-ng-required='true').form-control
+            .form-group
+              label.control-label.col-sm-2 &amp;bg=&nbsp;
+              .col-sm-10
+                input(type='text', data-ng-model='mc.badge.bg', placeholder='Badge background color...', data-ng-required='true').form-control
+            .form-group
+              label.control-label.col-sm-2 &amp;fsize=&nbsp;
+              .col-sm-10
+                input(type='text', data-ng-model='mc.badge.fsize', placeholder='Badge font size (pixels)...', data-ng-required='true').form-control
+            .form-group
+              label.control-label.col-sm-2 &amp;vPad=&nbsp;
+              .col-sm-10
+                input(type='text', data-ng-model='mc.badge.vPad', placeholder='Badge text vertical padding...', data-ng-required='true').form-control
+            .form-group
+              label.control-label.col-sm-2 &amp;hPad=&nbsp;
+              .col-sm-10
+                input(type='text', data-ng-model='mc.badge.hPad', placeholder='Badge text horizontal padding...', data-ng-required='true').form-control
+            .form-group
+              label.control-label.col-sm-2 &amp;br=&nbsp;
+              .col-sm-10
+                input(type='text', data-ng-model='mc.badge.br', placeholder='Badge border radius...', data-ng-required='true').form-control
+            .form-group
+              label.control-label.col-sm-2 &amp;ff=&nbsp;
+              .col-sm-10
+                input(type='text', data-ng-model='mc.badge.ff', placeholder='Badge font...', data-ng-required='true').form-control
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                .checkbox
+                  label
+                    input(type='checkbox', data-ng-model='mc.badge.bold')
+                    | bold?
+
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js')
+    script.
+      angular
+        .module('myApp', [])
+        .controller('Main_Controller', [mainController])
+        ;
+
+      angular.element(document).ready(function() {
+        angular.bootstrap(document, ['myApp']);
+      });
+
+      function mainController() {
+        var vm = this;
+
+        vm.badge = {
+          text: 'Sample',
+          fg: 'FFF',
+          bg: 'F00',
+          fsize: 20,
+          vPad: 20,
+          hPad: 20,
+          br: 10,
+          ff: 'Courier New',
+          bold: false
+        };
+      }
