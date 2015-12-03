@@ -4,16 +4,14 @@ html
   body
     svg
       include svg-inner
+    - locals.settings = undefined;
+    - locals._locals = undefined;
+    - locals.chace = undefined;
     pre.code !{JSON.stringify(locals, null, 2)}
     script.
       var el = document.getElementsByTagName('text')[0];
-      //- var hEl = document.getElementById('width');
-      //- var wEl = document.getElementById('height');
-
-      //- hEl.innerHTML = el.getBoundingClientRect().height;
-      //- wEl.innerHTML = el.getBoundingClientRect().width;
-
       var hEl = document.createElement('div');
+
       hEl.id = 'height';
       hEl.innerHTML = el.getBoundingClientRect().height;
       document.body.appendChild(hEl);

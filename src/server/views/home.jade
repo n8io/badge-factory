@@ -2,33 +2,103 @@ doctype html
 html
   head
     link(href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', rel='stylesheet')
-    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js')
-    script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
     style.
-      @charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}
+      .flex {
+        display: flex;
+        align-items: center;
+      }
+      .flex .right {
+        padding-left: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      .flex .right .url {
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
   body
     .container(data-ng-controller='Main_Controller as mc')
       .row
         .col-sm-12.col-md-12.col-lg-12
           br
-          #badges
+      .row
+        .col-sm-12.col-md-12.col-lg-12
+          h1
+            a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+              img(src='/badge/badge-factory.svg?&fg=%23efefef&bg=%239e3bfc&fsize=35&br=5&hPad=15&vPad=4&ff=Arial', alt='Badge Factory', title='')
+          p Where you can make a custom svg badge with just the url.
+          h2 GitHub labels
+          hr
+          ul
+            li
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/bug.svg?&fg=%23fff&bg=%23fc2929&fsize=12&br=0', alt='Bug', title='')
+            li
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/duplicate.svg?&fg=%23000&bg=%23ccc&fsize=12&br=0', alt='Duplicate', title='')
+            li
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/enhancement.svg?&fg=%23000&bg=%2384b6eb&fsize=12&br=0', alt='Enhancement', title='')
+            li
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/help%20wanted.svg?&fg=%23fff&bg=%23159818&fsize=12&br=0', alt='Help wanted', title='')
+            li
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/invalid.svg?&fg=%23000&bg=%23e6e6e6&fsize=12&br=0', alt='Invalid', title='')
+            li
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/question.svg?&fg=%23fff&bg=%23cc317c&fsize=12&br=0', alt='Question', title='')
+            li
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/wontfix.svg?&fg=%23000&bg=%23fff&fsize=12&br=0', alt="Won't fix", title='')
+          h2 Bullets
+          hr
+          p
+            a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+              img(src='/badge/blank.svg?&fg=%23ffffff&bg=%23ff00ff&fsize=8&br=8&vPad=8&hPad=8&ff=Arial&bold=0', alt='Circle', title='')
+            | &nbsp;
+            a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+              img(src='/badge/blank.svg?&fg=%23ffffff&bg=%23222&fsize=8&br=8&vPad=8&hPad=12&ff=Arial&bold=0', alt='Circle', title='')
+            | &nbsp;
+            a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+              img(src='/badge/blank.svg?&fg=%23ffffff&bg=%232761fc&fsize=8&br=0&vPad=8&hPad=8&ff=Arial&bold=0', alt='Square', title='')
+          h2 Progress Bars
+          hr
+          ul
+            li
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/blank.svg?&fg=%23ffffff&bg=%23ff0000&fsize=10&br=0&vPad=3&hPad=5&ff=Arial&bold=0', alt='5%', title='')
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/blank.svg?&fg=%23ffffff&bg=%23eaf811&fsize=10&br=0&vPad=3&hPad=35&ff=Arial&bold=0', alt='35%', title='')
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/blank.svg?&fg=%23ffffff&bg=%23555&fsize=10&br=0&vPad=3&hPad=60&ff=Arial&bold=0', alt='60%', title='')
+            li
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/blank.svg?&fg=%23ffffff&bg=%230f0&fsize=10&br=0&vPad=3&hPad=75&ff=Arial&bold=0', alt='75%', title='')
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/blank.svg?&fg=%23ffffff&bg=%23ff6300&fsize=10&br=0&vPad=3&hPad=10&ff=Arial&bold=0', alt='10%', title='')
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/blank.svg?&fg=%23ffffff&bg=%2300f&fsize=10&br=0&vPad=3&hPad=15&ff=Arial&bold=0', alt='15%', title='')
+            li
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/blank.svg?&fg=%23ffffff&bg=%23ff3bcb&fsize=10&br=0&vPad=3&hPad=67&ff=Arial&bold=0', alt='67%', title='')
+              a(href='javascript://', data-ng-click='mc.loadBadge($event)')
+                img(src='/badge/blank.svg?&fg=%23ffffff&bg=%23ddd&fsize=10&br=0&vPad=3&hPad=33&ff=Arial&bold=0', alt='33%', title='')
+
       .row
         .col-sm-12.col-md-12.col-lg-12
           :markdown
-            ### GitHub style
+            ## Demo
 
-            * [![Bug](/badge/bug.svg?&fg=fff&bg=fc2929&fsize=12&br=0)](/badge/bug.svg?&fg=fff&bg=fc2929&fsize=12&br=0)
-            * [![Duplicate](/badge/duplicate.svg?&fg=000&bg=ccc&fsize=12&br=0)](/badge/duplicate.svg?&fg=000&bg=ccc&fsize=12&br=0)
-            * [![Enhancement](/badge/enhancement.svg?&fg=000&bg=84b6eb&fsize=12&br=0)](/badge/enhancement.svg?&fg=000&bg=84b6eb&fsize=12&br=0)
-            * [![Help wanted](/badge/help%20wanted.svg?&fg=fff&bg=159818&fsize=12&br=0)](/badge/help%20wanted.svg?&fg=fff&bg=159818&fsize=12&br=0)
-            * [![Invalid](/badge/invalid.svg?&fg=000&bg=e6e6e6&fsize=12&br=0)](/badge/invalid.svg?&fg=000&bg=e6e6e6&fsize=12&br=0)
-            * [![Question](/badge/question.svg?&fg=fff&bg=cc317c&fsize=12&br=0)](/badge/question.svg?&fg=fff&bg=cc317c&fsize=12&br=0)
-            * [![Won't fix](/badge/wontfix.svg?&fg=000&bg=fff&fsize=12&br=0)](/badge/wontfix.svg?&fg=000&bg=fff&fsize=12&br=0)
-
-      .row
-        .col-sm-12.col-md-12.col-lg-12
           hr
-          img(data-ng-src='/badge/{{mc.badge.text}}.svg?&fg={{mc.badge.fg}}&bg={{mc.badge.bg}}&fsize={{mc.badge.fsize}}&br={{mc.badge.br}}&vPad={{mc.badge.vPad}}&hPad={{mc.badge.hPad}}&ff={{mc.badge.ff}}&bold={{!!mc.badge.bold}}')
+          div.flex
+            .left
+              a(data-ng-href='{{mc.getBadgeUrl()}}', target='_sample')
+                img(data-ng-src='{{mc.getBadgeUrl()}}')
+            .right
+              a(data-ng-href='{{mc.getBadgeUrl()}}', target='_sample')
+                .url
+                  span(data-ng-bind='mc.getBadgeUrl()')
       .row
         .col-sm-12.col-md-12.col-lg-12
           br
@@ -36,65 +106,201 @@ html
             .form-group
               label.control-label.col-sm-2 &amp;txt=&nbsp;
               .col-sm-10
-                input(type='text', data-ng-model='mc.badge.text', placeholder='Badge text...', data-ng-required='true').form-control
+                input(type='text', data-ng-model='mc.badge.txt', placeholder='Badge text...', data-ng-required='true').form-control
             .form-group
               label.control-label.col-sm-2 &amp;fg=&nbsp;
-              .col-sm-10
-                input(type='text', data-ng-model='mc.badge.fg', placeholder='Badge foreground color...', data-ng-required='true').form-control
+              .col-sm-2
+                input(type='color', ng-model='mc.badge.fg').form-control
             .form-group
               label.control-label.col-sm-2 &amp;bg=&nbsp;
-              .col-sm-10
-                input(type='text', data-ng-model='mc.badge.bg', placeholder='Badge background color...', data-ng-required='true').form-control
+              .col-sm-2
+                input(type='color', ng-model='mc.badge.bg').form-control
             .form-group
               label.control-label.col-sm-2 &amp;fsize=&nbsp;
-              .col-sm-10
-                input(type='text', data-ng-model='mc.badge.fsize', placeholder='Badge font size (pixels)...', data-ng-required='true').form-control
+              .col-sm-2
+                input(type='number', data-ng-model='mc.badge.fsize', placeholder='Badge font size (pixels)...', data-ng-required='true').form-control
             .form-group
               label.control-label.col-sm-2 &amp;vPad=&nbsp;
-              .col-sm-10
-                input(type='text', data-ng-model='mc.badge.vPad', placeholder='Badge text vertical padding...', data-ng-required='true').form-control
+              .col-sm-2
+                input(type='number', data-ng-model='mc.badge.vPad', placeholder='Badge text vertical padding...', data-ng-required='true').form-control
             .form-group
               label.control-label.col-sm-2 &amp;hPad=&nbsp;
-              .col-sm-10
-                input(type='text', data-ng-model='mc.badge.hPad', placeholder='Badge text horizontal padding...', data-ng-required='true').form-control
+              .col-sm-2
+                input(type='number', data-ng-model='mc.badge.hPad', placeholder='Badge text horizontal padding...', data-ng-required='true').form-control
             .form-group
               label.control-label.col-sm-2 &amp;br=&nbsp;
-              .col-sm-10
-                input(type='text', data-ng-model='mc.badge.br', placeholder='Badge border radius...', data-ng-required='true').form-control
+              .col-sm-2
+                input(type='number', data-ng-model='mc.badge.br', placeholder='Badge border radius...', data-ng-required='true').form-control
             .form-group
               label.control-label.col-sm-2 &amp;ff=&nbsp;
-              .col-sm-10
-                input(type='text', data-ng-model='mc.badge.ff', placeholder='Badge font...', data-ng-required='true').form-control
+              .col-sm-2
+                select(data-ng-model='mc.badge.ff', data-ng-options='f as f for f in mc.fonts| orderBy: f').form-control
             .form-group
-              .col-sm-offset-2.col-sm-10
+              .col-sm-offset-2.col-sm-2
+                .checkbox
+                  label
+                    input(type='checkbox', data-ng-model='mc.badge.flat')
+                    | flat?
+            .form-group
+              .col-sm-offset-2.col-sm-2
                 .checkbox
                   label
                     input(type='checkbox', data-ng-model='mc.badge.bold')
                     | bold?
+      .row.hide
+        .col-sm-12
+          pre.code(data-ng-bind='mc.badge | json')
 
+    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js')
+    script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/URI.js/1.17.0/URI.min.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js')
     script.
+      'use strict';
+
       angular
         .module('myApp', [])
-        .controller('Main_Controller', [mainController])
+        .filter('urlencode', function(text) {
+          if(typeof text === 'undefined') {
+            return 'blank';
+          }
+
+          return encodeURIComponent(text);
+        })
+        .controller('Main_Controller', ['$filter', mainController])
         ;
 
       angular.element(document).ready(function() {
         angular.bootstrap(document, ['myApp']);
       });
 
-      function mainController() {
+      function mainController($filter) {
         var vm = this;
 
+        vm.fonts = [
+          'Arial',
+          'Courier New',
+          'Fantasy',
+          'Geneva',
+          'Monospace'
+        ];
+
         vm.badge = {
-          text: 'Sample',
-          fg: 'FFF',
-          bg: 'F00',
+          txt: 'Sample',
+          fg: '#ffffff',
+          bg: '#ff0000',
           fsize: 20,
           vPad: 20,
           hPad: 20,
           br: 10,
           ff: 'Courier New',
-          bold: false
+          bold: false,
+          flat: false
         };
+
+        vm.getBadgeUrl = getBadgeUrl;
+        vm.loadBadge = loadBadge;
+
+        function getBadgeUrl() {
+          return `/badge/${encodeURIComponent(vm.badge.txt || 'blank')}.svg?`
+            + `&fg=${encodeURIComponent(vm.badge.fg)}`
+            + `&bg=${encodeURIComponent(vm.badge.bg)}`
+            + `&fsize=${encodeURIComponent(vm.badge.fsize)}`
+            + `&br=${encodeURIComponent(vm.badge.br)}`
+            + `&vPad=${encodeURIComponent(vm.badge.vPad)}`
+            + `&hPad=${encodeURIComponent(vm.badge.hPad)}`
+            + `&ff=${encodeURIComponent(vm.badge.ff)}`
+            + `&bold=${encodeURIComponent(vm.badge.bold)}`
+            + `&flat=${encodeURIComponent(vm.badge.flat)}`
+            ;
+        }
+
+        function loadBadge(ev) {
+          //- console.log(ev);
+
+          var imgEl = $(ev.currentTarget);
+
+          if(imgEl.is('a')) {
+            imgEl = $(ev.currentTarget).children('img:eq(0)');
+          }
+
+          vm.badge = parseBadgeUrl(imgEl.attr('src'));
+        }
+
+        function parseBadgeUrl(url) {
+          //- console.log(url);
+
+          var txtReg = /badge\/(.+)\.svg/i;
+          var boldReg = /[?&](bold=1|bold=true)/i;
+          var flatReg = /[?&](flat=1|flat=true)/i;
+          var uri = URI.parse(url);
+          var text = decodeURIComponent(url.match(txtReg)[1]);
+          var query = URI.parseQuery(uri.query);
+          var bold = boldReg.test(uri.query);
+          var flat = flatReg.test(uri.query);
+
+          //- console.log('text', text);
+          //- console.log('uri', uri);
+          //- console.log('query', query);
+
+          query.fg = convertToFullHex(query.fg);
+          query.bg = convertToFullHex(query.bg);
+
+          if (typeof query.fsize !== 'undefined') {
+            query.fsize = parseInt(query.fsize, 10);
+          }
+          else {
+            query.fsize = 14;
+          }
+
+          if (typeof query.vPad !== 'undefined') {
+            query.vPad = parseInt(query.vPad, 10);
+          }
+          else {
+            query.vPad = parseInt(query.fsize / 3.2, 10);
+          }
+
+          if (typeof query.hPad !== 'undefined') {
+            query.hPad = parseInt(query.hPad, 10);
+          }
+          else{
+            query.hPad = parseInt(query.fsize / 2.4, 10);
+          }
+
+          if (typeof query.br !== 'undefined') {
+            query.br = parseInt(query.br, 10);
+          }
+          else {
+            query.br = 3;
+          }
+
+          if (typeof query.ff === 'undefined') {
+            query.ff = 'Arial';
+          }
+
+          query.bold = bold;
+          query.flat = flat;
+
+          angular.extend(vm.badge, query);
+          query.txt = text;
+
+          //- console.log('query', query);
+          //- console.log('vm.badge', vm.badge);
+
+          return query;
+        }
+
+        function convertToFullHex(hex) {
+          var offset = 0;
+
+          if (hex && hex.length < 6) {
+            if (!hex.indexOf('#')) {
+              offset = 1;
+            }
+
+            return '#' + hex[0 + offset] + hex[0 + offset] + hex[1 + offset] + hex[1 + offset] + hex[2 + offset] + hex[2 + offset];
+          }
+
+          return hex;
+        }
       }

@@ -9,6 +9,7 @@ const express = require('express');
 const co = require('co');
 const config = require(path.join(projRoot, 'src/server/helpers/config'));
 const jade = require('jade');
+const _ = require('lodash');
 
 module.exports = function(app) {
   const router = express.Router();
@@ -23,18 +24,18 @@ module.exports = function(app) {
 function buildOutSvg(req, res) {
   const opts = buildOptionsFromRequest(req);
   const host = process.env.NODE_ENV !== 'local' ? config.get('HOST') : `${config.get('HOST')}:${config.get('PORT')}`;
-  const urlObj = url.parse(`http://${host}/blank/${opts.txt}`);
+  const urlObj = url.parse(`http://${host}/blank/${encodeURIComponent(opts.txt)}`);
 
   if (!opts.txt.trim()) {
     return res
       .status(401)
       .send({
-        message: 'If you don\'t want to provide any text, pass ?text=blank'
+        message: 'If you don\'t want to provide any text, pass ?txt=blank'
       })
       ;
   }
 
-  urlObj.query = opts;
+  urlObj.query = _.omit(opts, 'txt');
 
   co(function* () {
     const nightmare = Nightmare({show: false});
@@ -83,24 +84,49 @@ function buildOutSvg(req, res) {
 
 function buildOptionsFromRequest(req) {
   const opts = {
-    bg: req.query.bg || '555',
-    fg: req.query.fg || 'FFF',
-    txt: req.params.text || 'blank',
-    hPad: typeof req.query.hPad !== 'undefined' ? parseInt(req.query.hPad, 10) : -1,
-    vPad: typeof req.query.vPad !== 'undefined' ? parseInt(req.query.vPad, 10) : -1,
-    fsize: typeof req.query.fsize !== 'undefined' ? parseInt(req.query.fsize, 10) : 12,
-    br: typeof req.query.br !== 'undefined' ? parseInt(req.query.br, 10) : 3,
-    bold: !!parseInt(req.query.bold, 10),
-    ff: req.query.ff || 'Arial,Helvetica,Verdana,Geneva,sans-serif'
+    bg: parseParams(req.query.bg, '555', function(txt) {
+      return txt.replace(/(#)/ig, '');
+    }),
+    fg: parseParams(req.query.fg, 'FFF', function(txt) {
+      return txt.replace(/(#)/ig, '');
+    }),
+    txt: parseParams(req.params.text, 'blank'),
+    fsize: parseParams(req.query.fsize, 12, function(size) {
+      return parseInt(size, 10);
+    }),
+    br: parseParams(req.query.br, 3, function(radius) {
+      return parseInt(radius, 10);
+    }),
+    vPad: parseParams(req.query.vPad, 2, function(pad) {
+      return parseInt(pad, 10);
+    }),
+    hPad: parseParams(req.query.hPad, 3, function(pad) {
+      return parseInt(pad, 10);
+    }),
+    bold: parseParams(req.query.bold, false, function(b) {
+      const boldReg = /^(true|1)$/i;
+
+      return boldReg.test(b.toString());
+    }),
+    ff: parseParams(req.query.ff, 'Arial, sans-serif, monospace'),
+    flat: parseParams(req.query.flat, false, function(b) {
+      const flatReg = /^(true|1)$/i;
+
+      return flatReg.test(b.toString());
+    })
   };
 
-  if (opts.hPad === -1) {
-    opts.hPad = parseInt(opts.fsize / 2.4, 10);
-  }
-
-  if (opts.vPad === -1) {
-    opts.vPad = parseInt(opts.fsize / 3.2, 10);
+  if (req.query.pad) {
+    opts.pad = req.query.pad;
   }
 
   return opts;
+}
+
+function parseParams(raw, defaultVal, mixin) {
+  if (typeof raw === 'undefined') {
+    return defaultVal;
+  }
+
+  return typeof mixin === 'function' ? mixin(raw) : raw;
 }
